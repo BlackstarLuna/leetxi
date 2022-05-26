@@ -33,7 +33,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA*/
 // Random Variables
     char              textlab[64];
     char              aboutlab[100];
-    int               textlength = 35;
 
 // Widgets
     GtkWidget *image;
@@ -134,7 +133,7 @@ static void ashconfig ( GtkWidget *wid, GtkWidget *win )
 static void aboutit (GtkWidget *wid, GtkWidget *win)
 {
   GtkWidget *dialog = NULL;
-  sprintf(aboutlab,"%s", "LeetXI\n\n""Version 0.0.5\n""An Ashita Linux Launcher\n""because its about time...\n""see our githubpage:\n""insertgithublink\n");
+  sprintf(aboutlab,"%s", "LeetXI\n\n""Version 0.0.5\n""An Ashita Linux Launcher\n""because its about time...\n""see our githubpage:\n""https://github.com/BlackstarLuna/leetxi\n");
   dialog = gtk_message_dialog_new (GTK_WINDOW (win), GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, aboutlab);
   gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
   gtk_dialog_run (GTK_DIALOG (dialog));
