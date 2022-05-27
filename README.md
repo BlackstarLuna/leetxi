@@ -1,6 +1,29 @@
 leetxi
 ======
 
+pre-alpha
+=========
+
+some minor adjustments to the structure were made
+to allow for a polite installer, and to add
+proper error handling.
+
+prior to a proper alpha release for testing
+i will be adding a pkgbuild, testing upon
+a steamdeck vm, and focusing on arch
+based distrubutions.
+
+after, there will be work done
+on a debian,fedora,ubuntu
+installer.  though that will take
+some effort to track down dependencies
+so it is lower priority at this time.
+
+There also, will be a second installer
+as to seperate the main application
+from the cosmetic ehancements
+as to not overburden lower end hardware.
+
 ==overview==
 ============
 

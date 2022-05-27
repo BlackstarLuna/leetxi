@@ -31,102 +31,131 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA*/
 #include <sys/types.h>
 
 // Random Variables
-    char              textlab[64];
-    char              aboutlab[100];
+char              textlab[64];
+char              aboutlab[100];
 
 // Widgets
-    GtkWidget *image;
-    GtkWidget *fpath;
-    GtkWidget *window;
-    GtkWidget *vertbox;
-    GtkWidget *checkwin;
-    GtkWidget *checkwinbox;
-    GtkWidget *textstuff;
-    GtkWidget *pokeme;
-    GtkWidget *toolbar;
-    GtkWidget *menu;
-    GtkWidget *filemenu;
-    GtkWidget *filesubmenu;
-    GtkWidget *aboutmenu;
-    GtkWidget *aboutsubmenu;
-    GtkWidget *closeswitch;
-    GtkWidget *aboutswitch;
-    GtkWidget *dgv;
-    GtkWidget *xiconf;
-    GtkWidget *ashconf;
-    GtkWidget *dialog;
+GtkWidget *image;
+GtkWidget *fpath;
+GtkWidget *window;
+GtkWidget *vertbox;
+GtkWidget *checkwin;
+GtkWidget *checkwinbox;
+GtkWidget *textstuff;
+GtkWidget *pokeme;
+GtkWidget *toolbar;
+GtkWidget *menu;
+GtkWidget *filemenu;
+GtkWidget *filesubmenu;
+GtkWidget *aboutmenu;
+GtkWidget *aboutsubmenu;
+GtkWidget *closeswitch;
+GtkWidget *aboutswitch;
+GtkWidget *dgv;
+GtkWidget *xiconf;
+GtkWidget *ashconf;
+GtkWidget *dialog;
 
 // Events
-static gboolean delete_event( GtkWidget *widget,
-                              GdkEvent  *event,
-                              gpointer   data )
+static gboolean delete_event( GtkWidget *widget, GdkEvent  *event, gpointer   data )
 {
-   return FALSE;
+  return FALSE;
 }
 
-static void destroy( GtkWidget *widget,
-                     gpointer   data )
+static void destroy( GtkWidget *widget, gpointer   data )
 {
-    gtk_main_quit ();
+  gtk_main_quit ();
 }
 
 //Launch
 static void launch ( GtkWidget *wid, GtkWidget *win )
 {
-  char *const args[] = {"/usr/bin/sh","/opt/ffxi/launchxi"};
-  pid_t pid = fork() ;
+  char *const args[] = {"/usr/bin/sh","/opt/ffxi/launchxi.sh"};
+  pid_t pid = fork();
+  int checkfail;
 
   if (pid == 0)
   {
 	  execv(args[0],args);
   }else{
-        wait(pid);
-        exit(0);
+    waitpid( pid,&checkfail,0 ) ;
+    if (WEXITSTATUS(checkfail) !=0)
+    {
+      GtkWidget *dialog = NULL;
+      dialog = gtk_message_dialog_new (GTK_WINDOW (win), GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "Something has gone very wrong...\nplease do not alter the bash scripts.\nYou are on your own.\n");
+      gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
+      gtk_dialog_run (GTK_DIALOG (dialog));
+      gtk_widget_destroy (dialog);
     }
+  }
 }
 
 //dgVoodoo2 config
 static void dgvconfig ( GtkWidget *wid, GtkWidget *win )
 {
-  char *const args[] = {"/usr/bin/sh","/opt/ffxi/configdgv"};
-  pid_t pid = fork() ;
+  char *const args[] = {"/usr/bin/sh","/opt/ffxi/configdgv.sh"};
+  pid_t pid = fork();
+  int checkfail;
 
   if (pid == 0)
   {
 	  execv(args[0],args);
   }else{
-        wait(pid);
-        exit(0);
+    waitpid( pid,&checkfail,0 ) ;
+    if (WEXITSTATUS(checkfail) !=0)
+    {
+      GtkWidget *dialog = NULL;
+      dialog = gtk_message_dialog_new (GTK_WINDOW (win), GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "It seems you have not installed\ndgvoodoo2 please look at the github\npagefor ourcosmetic installer\n");
+      gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
+      gtk_dialog_run (GTK_DIALOG (dialog));
+      gtk_widget_destroy (dialog);
     }
+  }
 }
 //FFXI config
 static void xiconfig ( GtkWidget *wid, GtkWidget *win )
 {
-  char *const args[] = {"/usr/bin/sh","/opt/ffxi/configxi"};
+  char *const args[] = {"/usr/bin/sh","/opt/ffxi/configxi.sh"};
   pid_t pid = fork() ;
+  int checkfail;
 
   if (pid == 0)
   {
-	  execv(args[0],args);
+	execv(args[0],args);
   }else{
-        wait(pid);
-        exit(0);
+    waitpid( pid,&checkfail,0 ) ;
+    if (WEXITSTATUS(checkfail) !=0)
+    {
+      GtkWidget *dialog = NULL;
+      dialog = gtk_message_dialog_new (GTK_WINDOW (win), GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "Something has gone very wrong...\nplease do not alter the bash scripts.\nYou are on your own.\n");
+      gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
+      gtk_dialog_run (GTK_DIALOG (dialog));
+      gtk_widget_destroy (dialog);
     }
+  }
 }
 
 //Ashita config
 static void ashconfig ( GtkWidget *wid, GtkWidget *win )
 {
-  char *const args[] = {"/usr/bin/sh","/opt/ffxi/configash"};
+  char *const args[] = {"/usr/bin/sh","/opt/ffxi/configash.sh"};
   pid_t pid = fork() ;
+  int checkfail;
 
   if (pid == 0)
   {
-	  execv(args[0],args);
+	execv(args[0],args);
   }else{
-        wait(pid);
-        exit(0);
+    waitpid( pid,&checkfail,0 ) ;
+    if (WEXITSTATUS(checkfail) !=0)
+    {
+      GtkWidget *dialog = NULL;
+      dialog = gtk_message_dialog_new (GTK_WINDOW (win), GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "Something has gone very wrong...\nplease do not alter the bash scripts.\nYou are on your own.\n");
+      gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
+      gtk_dialog_run (GTK_DIALOG (dialog));
+      gtk_widget_destroy (dialog);
     }
+  }
 }
 
 // About Menu Item
