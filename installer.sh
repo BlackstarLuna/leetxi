@@ -5,6 +5,7 @@ echo 'make this directory if needed'
 echo 'press enter to continue...'
 read trash
 
+cd ~/Downloads/leetxi/
 7z x ~/Downloads/leetxi/*.7z
 
 WINEPREFIX=/opt/ffxi wine ~/Downloads/leetxi/Installer\ Package/Installer.exe
