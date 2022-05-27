@@ -7,7 +7,7 @@ read trash
 
 7z x ~/Downloads/leetxi/*.7z
 
-WINEPREFIX=/opt/ffxi wine Downloads/leetxi/Installer\ Package/Installer.exe
+WINEPREFIX=/opt/ffxi wine ~/Downloads/leetxi/Installer\ Package/Installer.exe
 
 echo 'running a short cleanup'
 
